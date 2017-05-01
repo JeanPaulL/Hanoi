@@ -1,0 +1,36 @@
+	Stack towers[3];
+	
+	// 
+	int s = 0;
+	int d = 2;
+	int i = 1;
+	
+	for (int i = 5; i > 1; i--) {
+		towers[s].push(i-1);
+	}
+	
+	int n = towers[s].getstacksize();
+	
+	
+	 
+	hanoi(n,s,d,i,towers);
+	
+	cout << moves;
+}
+
+void hanoi(int n,int s,int d,int i, Stack tower[]) { // move n rings from s to d using i
+	if(n > 0) {
+		hanoi(n-1, s, i, d, tower); // move n-1 rings from s to i using d
+		move(n,s,d,tower); // move ring n from s to d
+		moves++;
+		hanoi(n-1, i, d, s, tower); // move the n-1 rings from i to d using s
+	}
+}
+
+void move(int n, int s, int d, Stack tower[]) {
+	
+	tower[d].push(tower[s].pop());
+	cout << tower[0].getstackelement(tower[0].getTop()) << " " << tower[1].getstackelement(tower[1].getTop()) << " " << tower[2].getstackelement(tower[2].getTop()) << " " << endl;
+	cout << tower[0].getstacksize() << " " << tower[1].getstacksize() << " " << tower[2].getstacksize() << " " << endl;
+	cout << endl << endl;
+}
